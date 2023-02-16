@@ -52,12 +52,12 @@ class HomegrowerActivity : AppCompatActivity() {
 
         binding.btnAdd.setOnClickListener() {
             node.title = binding.nodeTitle.text.toString()
-            node.minTemp = Integer.parseInt(binding.nodeMinTemp.text.toString())
-            node.maxTemp = Integer.parseInt(binding.nodeMaxTemp.text.toString())
-            node.minHumid= Integer.parseInt(binding.nodeMinHumid.text.toString())
-            node.maxHumid = Integer.parseInt(binding.nodeMaxHumid.text.toString())
-            node.minMoisture = Integer.parseInt(binding.nodeMinMoisture.text.toString())
-            node.maxMoisture = Integer.parseInt(binding.nodeMaxMoisture.text.toString())
+            node.minTemp = binding.nodeMinTemp.text.toString().toDouble()
+            node.maxTemp = binding.nodeMaxTemp.text.toString().toDouble()
+            node.minHumid= binding.nodeMinHumid.text.toString().toDouble()
+            node.maxHumid = binding.nodeMaxHumid.text.toString().toDouble()
+            node.minMoisture = binding.nodeMinMoisture.text.toString().toDouble()
+            node.maxMoisture = binding.nodeMaxMoisture.text.toString().toDouble()
             if (node.title.isEmpty()) {
                 Snackbar.make(it, R.string.enter_title, Snackbar.LENGTH_LONG)
                     .show()
