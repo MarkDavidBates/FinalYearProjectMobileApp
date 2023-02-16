@@ -32,7 +32,7 @@ class HomegrowerActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarAdd)
 
         app = application as MainApp
-        i("Wishlist Activity started...")
+        i("Activity started...")
 
 
 
