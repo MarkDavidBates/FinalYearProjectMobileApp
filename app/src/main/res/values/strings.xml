@@ -1,21 +1,27 @@
 <resources>
-    <string name="app_name">WishlistAndroid</string>
-    <string name="button_addWishlist">Add Wishlist</string>
-    <string name="hint_wishlistTitle">Wishlist Title</string>
-    <string name="hint_wishlistdescription">Wishlist description</string>
-    <string name="hint_wishlistAttendees">Wishlist Attendees (number)</string>
-    <string name="menu_addWishlist">Add</string>
-    <string name="menu_cancelWishlist">Cancel</string>
+    <string name="app_name">Home Grower</string>
+    <string name="button_addNode">Add Node</string>
+    <string name="hint_nodeTitle">Node Title</string>
+
+    <string name="hint_minTemperature">Temperature (Min)</string>
+    <string name="hint_maxTemperature">Temperature (Max)</string>
+    <string name="hint_minHumidity">Humidity (Min)</string>
+    <string name="hint_maxHumidity">Humidity (Max)</string>
+    <string name="hint_minMoisture">Moisture (Min)</string>
+    <string name="hint_maxMoisture">Moisture (Max)</string>
+
+    <string name="menu_addNode">Add</string>
+    <string name="menu_cancelNode">Cancel</string>
     <string name="enter_title">Please Enter a title</string>
-    <string name="save_wishlist">Save Wishlist</string>
+    <string name="save_node">Save Node</string>
     <string name="button_addImage"> Add Image </string>
-    <string name="select_wishlist_image">Select wishlist image</string>
-    <string name="change_wishlist_image">Change Wishlist image</string>
+    <string name="select_wishlist_image">Select Node image</string>
+    <string name="change_wishlist_image">Change Node image</string>
     <string name="button_location">Set Location</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_map">MapActivity</string>
-    <string name="menu_deleteWishlist">Delete</string>
-    <string name="hint_wishlistemail">Email</string>
-    <string name="hint_wishlistpassword">Password</string>
+    <string name="menu_deleteNode">Delete</string>
+    <string name="hint_nodeEmail">Email</string>
+    <string name="hint_nodePassword">Password</string>
     <string name="enter_valid_password">Please Enter a valid password</string>
 </resources>

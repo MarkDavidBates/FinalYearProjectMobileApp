@@ -5,10 +5,10 @@
     <item
         android:visible="false"
         android:id="@+id/item_delete"
-        android:title="@string/menu_deleteWishlist"
+        android:title="@string/menu_deleteNode"
         app:showAsAction="always"/>
     <item
         android:id="@+id/item_cancel"
-        android:title="@string/menu_cancelWishlist"
+        android:title="@string/menu_cancelNode"
         app:showAsAction="always"/>
 </menu>

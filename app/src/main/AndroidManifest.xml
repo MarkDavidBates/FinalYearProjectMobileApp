@@ -25,11 +25,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".activities.MapActivity"
-            android:exported="false"
-            android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".activities.SignInActivity"
+            android:name=".activities.HomegrowerListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,20 +38,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.WishlistListActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activities.WishlistActivity"
+            android:name=".activities.HomegrowerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

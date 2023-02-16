@@ -1,9 +1,7 @@
 package org.wit.wishlistandroid.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns.EMAIL_ADDRESS
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,16 +10,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import org.wit.wishlistandroid.adapters.WishlistAdapter
-import org.wit.wishlistandroid.databinding.ActivityWishlistSigninBinding
-import androidx.recyclerview.widget.LinearLayoutManager
+import org.wit.wishlistandroid.databinding.ActivityHomegrowerSigninBinding
 import com.google.android.material.snackbar.Snackbar
 import org.wit.wishlistandroid.R
 import timber.log.Timber.i
 
 class SignInActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityWishlistSigninBinding
+    private lateinit var binding: ActivityHomegrowerSigninBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
 
@@ -31,7 +27,7 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
 
-        binding = ActivityWishlistSigninBinding.inflate(layoutInflater)
+        binding = ActivityHomegrowerSigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.button3.setOnClickListener()
@@ -69,7 +65,7 @@ class SignInActivity : AppCompatActivity() {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
-            if (it.resultCode == Activity.RESULT_OK)
+            if (it.resultCode == RESULT_OK)
             {
                 i("Logged Out")
                 binding.email.text.clear()
@@ -128,7 +124,7 @@ class SignInActivity : AppCompatActivity() {
 
     private fun launchApp(user: FirebaseUser?)
     {
-        val userIntent = Intent(this, WishlistListActivity::class.java)
+        val userIntent = Intent(this, HomegrowerListActivity::class.java)
         userIntent.putExtra("user_logged_in", user)
         getResult.launch(userIntent)
     }

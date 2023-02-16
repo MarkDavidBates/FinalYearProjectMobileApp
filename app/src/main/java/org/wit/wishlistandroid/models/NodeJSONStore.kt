@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import com.google.gson.*
 import com.google.gson.reflect.TypeToken
-import org.wit.wishlistandroid.helpers.*
 import org.wit.wishlistandroid.main.exists
 import org.wit.wishlistandroid.main.read
 import org.wit.wishlistandroid.main.write
@@ -12,19 +11,19 @@ import timber.log.Timber
 import java.lang.reflect.Type
 import java.util.*
 
-const val JSON_FILE = "wishlists.json"
+const val JSON_FILE = "nodes.json"
 val gsonBuilder: Gson = GsonBuilder().setPrettyPrinting()
     .registerTypeAdapter(Uri::class.java, UriParser())
     .create()
-val listType: Type = object : TypeToken<ArrayList<WishlistModel>>() {}.type
+val listType: Type = object : TypeToken<ArrayList<NodeModel>>() {}.type
 
 fun generateRandomId(): Long {
     return Random().nextLong()
 }
 
-class WishlistJSONStore(private val context: Context) : WishlistStore {
+class NodesJSONStore(private val context: Context) : NodeStore {
 
-    var wishlists = mutableListOf<WishlistModel>()
+    var nodes = mutableListOf<NodeModel>()
 
     init {
         if (exists(context, JSON_FILE)) {
@@ -32,51 +31,50 @@ class WishlistJSONStore(private val context: Context) : WishlistStore {
         }
     }
 
-    override fun findAll(): MutableList<WishlistModel> {
+    override fun findAll(): MutableList<NodeModel> {
         logAll()
-        return wishlists
+        return nodes
     }
 
-    override fun create(wishlist: WishlistModel) {
-        wishlist.id = generateRandomId()
-        wishlists.add(wishlist)
+    override fun create(node: NodeModel) {
+        node.id = generateRandomId()
+        nodes.add(node)
         serialize()
     }
 
 
-    override fun update(wishlist: WishlistModel) {
-        val wishlistsList = findAll() as ArrayList<WishlistModel>
-        var foundWishlist: WishlistModel? = wishlistsList.find { p -> p.id == wishlist.id }
-        if (foundWishlist != null) {
-            foundWishlist.title = wishlist.title
-            foundWishlist.description = wishlist.description
-            foundWishlist.attendees = wishlist.attendees
-            foundWishlist.date = wishlist.date
-            foundWishlist.image = wishlist.image
-            foundWishlist.lat = wishlist.lat
-            foundWishlist.long = wishlist.long
-            foundWishlist.zoom = wishlist.zoom
+    override fun update(node: NodeModel) {
+        val nodesList = findAll() as ArrayList<NodeModel>
+        var foundNodelist: NodeModel? = nodesList.find { p -> p.id == node.id }
+        if (foundNodelist != null) {
+            foundNodelist.title = node.title
+            foundNodelist.minTemp = node.minTemp
+            foundNodelist.maxTemp = node.maxTemp
+            foundNodelist.minHumid = node.minHumid
+            foundNodelist.maxHumid = node.maxHumid
+            foundNodelist.minMoisture = node.minMoisture
+            foundNodelist.maxMoisture = node.maxMoisture
         }
         serialize()
     }
 
-    override fun delete(wishlist: WishlistModel) {
-        wishlists.remove(wishlist)
+    override fun delete(node: NodeModel) {
+        nodes.remove(node)
         serialize()
     }
 
     private fun serialize() {
-        val jsonString = gsonBuilder.toJson(wishlists, listType)
+        val jsonString = gsonBuilder.toJson(nodes, listType)
         write(context, JSON_FILE, jsonString)
     }
 
     private fun deserialize() {
         val jsonString = read(context, JSON_FILE)
-        wishlists = gsonBuilder.fromJson(jsonString, listType)
+        nodes = gsonBuilder.fromJson(jsonString, listType)
     }
 
     private fun logAll() {
-        wishlists.forEach { Timber.i("$it") }
+        nodes.forEach { Timber.i("$it") }
     }
 }
 

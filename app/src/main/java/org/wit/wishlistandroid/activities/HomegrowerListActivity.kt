@@ -9,28 +9,28 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.wit.wishlistandroid.R
-import org.wit.wishlistandroid.databinding.ActivityWishlistListBinding
+import org.wit.wishlistandroid.databinding.ActivityHomegrowerListBinding
 import org.wit.wishlistandroid.main.MainApp
 import org.wit.wishlistandroid.adapters.WishlistAdapter
 import org.wit.wishlistandroid.adapters.WishlistListener
-import org.wit.wishlistandroid.models.WishlistModel
+import org.wit.wishlistandroid.models.NodeModel
 
-class WishlistListActivity : AppCompatActivity(), WishlistListener {
+class HomegrowerListActivity : AppCompatActivity(), WishlistListener {
 
     lateinit var app: MainApp
-    private lateinit var binding: ActivityWishlistListBinding
+    private lateinit var binding: ActivityHomegrowerListBinding
     private var position: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityWishlistListBinding.inflate(layoutInflater)
+        binding = ActivityHomegrowerListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = WishlistAdapter(app.wishlists.findAll(), this)
+        binding.recyclerView.adapter = WishlistAdapter(app.nodes.findAll(), this)
 
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
@@ -44,7 +44,7 @@ class WishlistListActivity : AppCompatActivity(), WishlistListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_add -> {
-                val launcherIntent = Intent(this, WishlistActivity::class.java)
+                val launcherIntent = Intent(this, HomegrowerActivity::class.java)
                 getResult.launch(launcherIntent)
             }
         }
@@ -57,13 +57,13 @@ class WishlistListActivity : AppCompatActivity(), WishlistListener {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.wishlists.findAll().size)
+                notifyItemRangeChanged(0,app.nodes.findAll().size)
             }
         }
 
-    override fun onWishlistClick(wishlist: WishlistModel, pos: Int) {
-        val launcherIntent = Intent(this, WishlistActivity::class.java)
-        launcherIntent.putExtra("wishlist_edit", wishlist)
+    override fun onWishlistClick(node: NodeModel, pos: Int) {
+        val launcherIntent = Intent(this, HomegrowerActivity::class.java)
+        launcherIntent.putExtra("node_edit", node)
         position = pos
         getClickResult.launch(launcherIntent)
     }
@@ -71,7 +71,7 @@ class WishlistListActivity : AppCompatActivity(), WishlistListener {
     private val getClickResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()
     ){
         if (it.resultCode == Activity.RESULT_OK){
-            (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.wishlists.findAll().size)
+            (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.nodes.findAll().size)
         }
         else // Deleting
             if (it.resultCode == 99)

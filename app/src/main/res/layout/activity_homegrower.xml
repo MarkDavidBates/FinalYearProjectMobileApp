@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.WishlistActivity">
+    tools:context=".activities.HomegrowerActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,12 +40,12 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/wishlistTitle"
+                    android:id="@+id/node_title"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
-                    android:hint="@string/hint_wishlistTitle"
+                    android:hint="@string/hint_nodeTitle"
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"
@@ -54,26 +54,12 @@
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/wishlistDescription"
+                    android:id="@+id/node_minTemp"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
-                    android:hint="@string/hint_wishlistdescription"
-                    android:inputType="text"
-                    android:maxLength="250"
-                    android:maxLines="1"
-                    android:padding="8dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/wishlistAttendees"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_margin="8dp"
-                    android:autofillHints="hint"
-                    android:hint="@string/hint_wishlistAttendees"
+                    android:hint="@string/hint_minTemperature"
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"
@@ -81,42 +67,75 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
 
-                <CalendarView
-                    android:id="@+id/wishlistDate"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:minDate="01/01/2022"/>
-
-                <Button
-                    android:id="@+id/chooseImage"
+                <EditText
+                    android:id="@+id/node_maxTemp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="@color/colorAccent"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:text="@string/button_addImage"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="16sp"/>
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_maxTemperature"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/wishlistImage"
+                <EditText
+                    android:id="@+id/node_minHumid"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/presenticon" />
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_minHumidity"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
 
-                <Button
-                    android:id="@+id/wishlistLocation"
+                <EditText
+                    android:id="@+id/node_maxHumid"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="@color/colorAccent"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:stateListAnimator="@null"
-                    android:text="@string/button_location"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="16sp"/>
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_maxHumidity"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/node_minMoisture"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_minMoisture"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/node_maxMoisture"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_maxMoisture"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
 
                 <Button
                     android:id="@+id/btnAdd"
@@ -127,7 +146,7 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:stateListAnimator="@null"
-                    android:text="@string/button_addWishlist"
+                    android:text="@string/button_addNode"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
             </LinearLayout>
