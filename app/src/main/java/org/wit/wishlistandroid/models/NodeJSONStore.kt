@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import com.google.gson.*
 import com.google.gson.reflect.TypeToken
+import org.wit.wishlistandroid.main.MainApp
 import org.wit.wishlistandroid.main.exists
 import org.wit.wishlistandroid.main.read
 import org.wit.wishlistandroid.main.write
@@ -48,12 +49,10 @@ class NodesJSONStore(private val context: Context) : NodeStore {
         var foundNodelist: NodeModel? = nodesList.find { p -> p.id == node.id }
         if (foundNodelist != null) {
             foundNodelist.title = node.title
-            foundNodelist.minTemp = node.minTemp
-            foundNodelist.maxTemp = node.maxTemp
-            foundNodelist.minHumid = node.minHumid
-            foundNodelist.maxHumid = node.maxHumid
-            foundNodelist.minMoisture = node.minMoisture
-            foundNodelist.maxMoisture = node.maxMoisture
+            foundNodelist.penID = node.penID
+            foundNodelist.temperature = node.temperature
+            foundNodelist.humidity = node.temperature
+            foundNodelist.moisture = node.moisture
         }
         serialize()
     }

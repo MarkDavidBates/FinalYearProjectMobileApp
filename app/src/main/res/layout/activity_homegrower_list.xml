@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context="org.wit.wishlistandroid.activities.HomegrowerListActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="272dp"
+        android:layout_height="330dp"
+        android:layout_marginTop="48dp"
+        android:alpha="0.5"
+        app:layout_anchor="@+id/recyclerView"
+        app:layout_anchorGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/syncButton"
+        app:srcCompat="@drawable/plantpenicon" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
+        android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

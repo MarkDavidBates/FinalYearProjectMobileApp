@@ -1,13 +1,22 @@
 package org.wit.wishlistandroid.activities
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.isDigitsOnly
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import org.wit.wishlistandroid.R
 import org.wit.wishlistandroid.databinding.ActivityHomegrowerBinding
 import org.wit.wishlistandroid.main.MainApp
@@ -18,11 +27,14 @@ class HomegrowerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomegrowerBinding
     var node = NodeModel()
+    var values = MainApp()
     lateinit var app : MainApp
     var edit = false
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
+
 
         super.onCreate(savedInstanceState)
         binding = ActivityHomegrowerBinding.inflate(layoutInflater)
@@ -34,44 +46,38 @@ class HomegrowerActivity : AppCompatActivity() {
         app = application as MainApp
         i("Activity started...")
 
+        i("temperature: ${values.temperature}")
+        i("humidity: ${values.humidity}")
+        i("moisture: ${values.moisture}")
 
 
         if(intent.hasExtra("node_edit")){
             edit = true
             node = intent.extras?.getParcelable("node_edit")!!
             binding.nodeTitle.setText(node.title)
-            binding.nodeMinTemp.setText(node.minTemp.toString())
-            binding.nodeMaxTemp.setText(node.maxTemp.toString())
-            binding.nodeMinHumid.setText(node.minHumid.toString())
-            binding.nodeMaxHumid.setText(node.maxHumid.toString())
-            binding.nodeMinMoisture.setText(node.minMoisture.toString())
-            binding.nodeMaxMoisture.setText(node.maxMoisture.toString())
+            binding.plantPenId.setText(node.penID)
             binding.btnAdd.setText(R.string.save_node)
         }
 
 
         binding.btnAdd.setOnClickListener() {
             node.title = binding.nodeTitle.text.toString()
-            node.minTemp = binding.nodeMinTemp.text.toString().toDouble()
-            node.maxTemp = binding.nodeMaxTemp.text.toString().toDouble()
-            node.minHumid= binding.nodeMinHumid.text.toString().toDouble()
-            node.maxHumid = binding.nodeMaxHumid.text.toString().toDouble()
-            node.minMoisture = binding.nodeMinMoisture.text.toString().toDouble()
-            node.maxMoisture = binding.nodeMaxMoisture.text.toString().toDouble()
-            if (node.title.isEmpty()) {
+            node.penID = binding.plantPenId.text.toString()
+
+
+            if (node.title.isEmpty() || node.penID.isEmpty()) {
                 Snackbar.make(it, R.string.enter_title, Snackbar.LENGTH_LONG)
                     .show()
             }
             else {
                 if(edit){
-
                     app.nodes.update(node.copy())
                 } else{
                     app.nodes.create(node.copy())
                 }
+                setResult(RESULT_OK)
+                finish()
             }
-            setResult(RESULT_OK)
-            finish()
         }
 
     }

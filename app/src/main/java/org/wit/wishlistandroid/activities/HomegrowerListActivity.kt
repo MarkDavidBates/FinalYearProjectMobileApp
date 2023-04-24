@@ -14,6 +14,8 @@ import org.wit.wishlistandroid.main.MainApp
 import org.wit.wishlistandroid.adapters.WishlistAdapter
 import org.wit.wishlistandroid.adapters.WishlistListener
 import org.wit.wishlistandroid.models.NodeModel
+import timber.log.Timber
+import java.util.*
 
 class HomegrowerListActivity : AppCompatActivity(), WishlistListener {
 
@@ -30,10 +32,20 @@ class HomegrowerListActivity : AppCompatActivity(), WishlistListener {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = WishlistAdapter(app.nodes.findAll(), this)
+        binding.recyclerView.adapter = WishlistAdapter(app.nodes.findAll(), app.data,this)
 
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
+
+        val timer = Timer()
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                runOnUiThread {
+                    Timber.i("Activity refreshed")
+                    recreate() // Refresh the current activity
+                }
+            }
+        }, 10000, 10000)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -45,6 +57,10 @@ class HomegrowerListActivity : AppCompatActivity(), WishlistListener {
         when (item.itemId) {
             R.id.item_add -> {
                 val launcherIntent = Intent(this, HomegrowerActivity::class.java)
+                getResult.launch(launcherIntent)
+            }
+            R.id.item_sync -> {
+                val launcherIntent = Intent(this, NodeSyncActivity::class.java)
                 getResult.launch(launcherIntent)
             }
         }

@@ -1,8 +1,10 @@
 package org.wit.wishlistandroid.models
 
+import org.wit.wishlistandroid.main.MainApp
 import timber.log.Timber.i
 
 var lastId = 0L
+var values = MainApp()
 
 internal fun getId(): Long{
     return lastId++
@@ -25,12 +27,10 @@ class WishlistMemStore : NodeStore{
         var foundNodelist: NodeModel? = wishlists.find { p -> p.id == node.id }
         if (foundNodelist != null){
             foundNodelist.title = node.title
-            foundNodelist.minTemp = node.minTemp
-            foundNodelist.maxTemp = node.maxTemp
-            foundNodelist.minHumid = node.minHumid
-            foundNodelist.maxHumid = node.maxHumid
-            foundNodelist.minMoisture = node.minMoisture
-            foundNodelist.maxMoisture = node.maxMoisture
+            foundNodelist.penID = node.penID
+            foundNodelist.temperature = node.temperature
+            foundNodelist.humidity = node.humidity
+            foundNodelist.moisture = node.moisture
             logAll()
         }
     }

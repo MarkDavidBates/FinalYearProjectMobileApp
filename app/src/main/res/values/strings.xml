@@ -2,6 +2,7 @@
     <string name="app_name">Home Grower</string>
     <string name="button_addNode">Add Node</string>
     <string name="hint_nodeTitle">Node Title</string>
+    <string name="hint_plantPenID">Plant Pen ID</string>
 
     <string name="hint_minTemperature">Temperature (Min)</string>
     <string name="hint_maxTemperature">Temperature (Max)</string>
@@ -11,8 +12,9 @@
     <string name="hint_maxMoisture">Moisture (Max)</string>
 
     <string name="menu_addNode">Add</string>
+    <string name="menu_syncNode">Sync</string>
     <string name="menu_cancelNode">Cancel</string>
-    <string name="enter_title">Please Enter a title</string>
+    <string name="enter_title">Please enter a title and serial number</string>
     <string name="save_node">Save Node</string>
     <string name="button_addImage"> Add Image </string>
     <string name="select_wishlist_image">Select Node image</string>
@@ -21,7 +23,10 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="menu_deleteNode">Delete</string>
+    <string name="hint_wifiName">Name</string>
+    <string name="hint_wifiPassword">Password</string>
     <string name="hint_nodeEmail">Email</string>
+    <string name="hint_ssid">SSID</string>
     <string name="hint_nodePassword">Password</string>
     <string name="enter_valid_password">Please Enter a valid password</string>
 </resources>
